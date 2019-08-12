@@ -33,12 +33,12 @@ public class Controller {
 
         System.out.println("test " +  jsData.getJsonByName(STATICSTRING.VNDIRECT_BAO_CAO_KQKD));
 
-//        Data data = JSonAnalyzing.processData(jsData);
-//
-//        setTextBoxData(data);
-//
-//        String fullCompanyName =  Network.getCompanyName(companyName);
-//        txtFullCompanyName.setText("Company Name: " + fullCompanyName);
+        Data data = JSonAnalyzing.processData(jsData);
+
+        setTextBoxData(data);
+
+        String fullCompanyName =  Network.getCompanyName(companyName);
+        txtFullCompanyName.setText("Company Name: " + fullCompanyName);
 
     }
 
