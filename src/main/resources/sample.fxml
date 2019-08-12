@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Button fx:id="btnRun" layoutX="675.0" layoutY="14.0" mnemonicParsing="false" onAction="#printOutput" text="TakeMoney" />
+      <Button fx:id="btnRun" layoutX="502.0" layoutY="51.0" mnemonicParsing="false" onAction="#printOutput" text="TakeMoney" />
       <Pane layoutX="29.0" layoutY="42.0" prefHeight="143.0" prefWidth="224.0">
          <children>
             <Label layoutX="14.0" layoutY="13.0" text="Current EPS" />
