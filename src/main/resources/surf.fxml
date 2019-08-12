@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane prefHeight="787.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <TextField layoutX="37.0" layoutY="40.0" prefHeight="25.0" prefWidth="157.0" text="&lt;15 | 16-50 | 50-80 | &gt;80" />
+         </children>
+      </Pane>
+      <TableView layoutX="29.0" layoutY="107.0" prefHeight="273.0" prefWidth="938.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C3" />
+            <TableColumn prefWidth="75.0" text="C4" />
+            <TableColumn prefWidth="75.0" text="C5" />
+            <TableColumn prefWidth="75.0" text="C6" />
+            <TableColumn prefWidth="75.0" text="C7" />
+            <TableColumn prefWidth="75.0" text="C8" />
+            <TableColumn prefWidth="75.0" text="C9" />
+            <TableColumn prefWidth="75.0" text="C10" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
