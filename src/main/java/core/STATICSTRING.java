@@ -12,4 +12,11 @@ public class STATICSTRING {
     public static final String DATA_CURRENT_EQUITY = "$.['Vốn góp'].2018";
     public static final String DATA_OLD_EQUITY = "$.['Vốn góp'].2015";
 
+    public static final String DATA_CURRENT_CASH_FLOW = "$.['Lưu chuyển tiền thuần trong kỳ'].2018";
+    public static final String DATA_OLD_CASH_FLOW = "$.['Lưu chuyển tiền thuần trong kỳ'].2015";
+
+    public static final String DATA_PROFIT_AFTER_TAX = "";
+    public static final String DATA_INVESTED_CAPITAL = "$.['Vốn và các quỹ'].2018";
+    public static final String DATA_LONGTERM_DEBT = "";
+
 }

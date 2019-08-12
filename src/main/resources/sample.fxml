@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Button fx:id="btnRun" layoutX="502.0" layoutY="51.0" mnemonicParsing="false" onAction="#printOutput" text="TakeMoney" />
+      <Button fx:id="btnRun" layoutX="362.0" layoutY="280.0" mnemonicParsing="false" onAction="#printOutput" text="TakeMoney" />
       <Pane layoutX="29.0" layoutY="42.0" prefHeight="143.0" prefWidth="224.0">
          <children>
             <Label layoutX="14.0" layoutY="13.0" text="Current EPS" />
@@ -49,6 +49,26 @@
             <TextField fx:id="txtOldSale" layoutX="101.0" layoutY="36.0" prefHeight="25.0" prefWidth="89.0" />
             <Label layoutX="15.0" layoutY="66.0" text="Year" />
             <TextField layoutX="101.0" layoutY="62.0" prefHeight="25.0" prefWidth="89.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="470.0" layoutY="164.0" prefHeight="116.0" prefWidth="255.0">
+         <children>
+            <Label layoutX="14.0" layoutY="13.0" text="Current Cash Flow" />
+            <TextField fx:id="txtCurrentCashFlow" layoutX="118.0" layoutY="9.0" prefHeight="25.0" prefWidth="89.0" />
+            <Label layoutX="15.0" layoutY="40.0" text="Old Cash Flow" />
+            <TextField fx:id="txtOldCashFlow" layoutX="118.0" layoutY="36.0" prefHeight="25.0" prefWidth="89.0" />
+            <Label layoutX="15.0" layoutY="66.0" text="Year" />
+            <TextField layoutX="118.0" layoutY="62.0" prefHeight="25.0" prefWidth="89.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="467.0" layoutY="42.0" prefHeight="143.0" prefWidth="224.0">
+         <children>
+            <Label layoutX="14.0" layoutY="13.0" text="Profit after tax" />
+            <TextField fx:id="txtProfitAfterTax" layoutX="105.0" layoutY="9.0" prefHeight="25.0" prefWidth="89.0" />
+            <Label layoutX="15.0" layoutY="40.0" text="Invested capital" />
+            <TextField fx:id="txtInvestedCapital" layoutX="105.0" layoutY="36.0" prefHeight="25.0" prefWidth="89.0" />
+            <Label layoutX="15.0" layoutY="66.0" text="Long-term debt" />
+            <TextField fx:id="txtLongTermDebt" layoutX="105.0" layoutY="62.0" prefHeight="25.0" prefWidth="89.0" />
          </children>
       </Pane>
    </children>
