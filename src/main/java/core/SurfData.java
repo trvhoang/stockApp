@@ -1,118 +1,140 @@
 package core;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+
 import java.sql.Ref;
 
 public class SurfData {
-    public String Type;
-    public String Code;
-    public String TrendSignal;
-    public String ReferPrice;
-    public String BoughtPrice;
-    public String Rate;
-    public String UpcutPrice;
-    public String DowncutPrice;
-    public String Style;
-    public String Remark;
+    @FXML
+    private TextField txtType;
+    @FXML
+    private TextField txtCode;
+    @FXML
+    private TextField txtTrendSignal;
+    @FXML
+    private TextField txtReferPrice;
+    @FXML
+    private TextField txtBoughtPrice;
+    @FXML
+    private TextField txtUpcutPrice;
+    @FXML
+    private TextField txtDowncutPrice;
+    @FXML
+    private TextField txtStyle;
+    @FXML
+    private TextField txtRemark;
+    public SimpleStringProperty  Type = new SimpleStringProperty();
+    public SimpleStringProperty  Code = new SimpleStringProperty();
+    public SimpleStringProperty  TrendSignal = new SimpleStringProperty();
+    public SimpleStringProperty  ReferPrice = new SimpleStringProperty();
+    public SimpleStringProperty  BoughtPrice = new SimpleStringProperty();
+    public SimpleStringProperty  Rate = new SimpleStringProperty();
+    public SimpleStringProperty  UpcutPrice = new SimpleStringProperty();
+    public SimpleStringProperty  DowncutPrice = new SimpleStringProperty();
+    public SimpleStringProperty  Style = new SimpleStringProperty();
+    public SimpleStringProperty  Remark = new SimpleStringProperty();
 
-    public SurfData(String text, String txtCodeText, String txtTrendSignalText, String txtReferPriceText, String txtBoughtPriceText, String txtUpcutPriceText, String txtDowncutPriceText, String txtStyleText, String txtRemarkText){
-
+    public SurfData(String Type, String Code, String TrendSignal, String ReferPrice, String BoughtPrice, String Rate, String UpcutPrice, String DowncutPrice, String Style, String Remark) {
+            setType(Type);
+            setCode(Code);
+            setTrendSignal(TrendSignal);
+            setReferPrice(ReferPrice);
+            setBoughtPrice(BoughtPrice);
+            setRate(Rate);
+            setUpcutPrice(UpcutPrice);
+            setDowncutPrice(DowncutPrice);
+            setStyle(Style);
+            setRemark(Remark);
     }
 
-    public void SurfData(String Type, String Code, String TrendSignal, String ReferPrice, String BoughtPrice, String Rate, String UpcutPrice, String DowncutPrice, String Style, String Remark){
-        this.Type = Type;
-        this.Code = Code;
-        this.TrendSignal = TrendSignal;
-        this.ReferPrice = ReferPrice;
-        this.BoughtPrice = BoughtPrice;
-        this.Rate = Rate;
-        this.UpcutPrice = UpcutPrice;
-        this.DowncutPrice = DowncutPrice;
-        this.Style = Style;
-        this. Remark = Remark;
+
+
+    public  SurfData(){
+        this("","","","","","","","","","");
     }
-
-    public  void SurfData(){
-
-    }
-
 
     public String getType() {
-        return Type;
+        return Type.get();
     }
 
+
     public void setType(String type) {
-        Type = type;
+        Type.set(type);
     }
 
     public String getCode() {
-        return Code;
+        return Code.get();
     }
 
     public void setCode(String code) {
-        Code = code;
+        Code.set(code);
     }
 
     public String getTrendSignal() {
-        return TrendSignal;
+        return TrendSignal.get();
     }
 
     public void setTrendSignal(String trendSignal) {
-        TrendSignal = trendSignal;
+        TrendSignal.set(trendSignal);
     }
 
     public String getReferPrice() {
-        return ReferPrice;
+        return ReferPrice.get();
     }
 
     public void setReferPrice(String referPrice) {
-        ReferPrice = referPrice;
+        ReferPrice.set(referPrice);
     }
 
     public String getBoughtPrice() {
-        return BoughtPrice;
+        return BoughtPrice.get();
     }
 
     public void setBoughtPrice(String boughtPrice) {
-        BoughtPrice = boughtPrice;
+        BoughtPrice.set(boughtPrice);
     }
 
     public String getRate() {
-        return Rate;
+        return Rate.get();
     }
 
     public void setRate(String rate) {
-        Rate = rate;
+        Rate.set(rate);
     }
 
     public String getUpcutPrice() {
-        return UpcutPrice;
+        return UpcutPrice.get();
     }
 
     public void setUpcutPrice(String upcutPrice) {
-        UpcutPrice = upcutPrice;
+        UpcutPrice.set(upcutPrice);
     }
 
     public String getDowncutPrice() {
-        return DowncutPrice;
+        return DowncutPrice.get();
     }
 
     public void setDowncutPrice(String downcutPrice) {
-        DowncutPrice = downcutPrice;
+        DowncutPrice.set(downcutPrice);
     }
 
     public String getStyle() {
-        return Style;
+        return Style.get();
     }
 
     public void setStyle(String style) {
-        Style = style;
+        Style.set(style);
     }
 
     public String getRemark() {
-        return Remark;
+        return Remark.get();
     }
 
     public void setRemark(String remark) {
-        Remark = remark;
+        Remark.set(remark);
     }
 }

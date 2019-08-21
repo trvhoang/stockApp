@@ -2,26 +2,27 @@ package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+
+
 public class Main extends Application {
-
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        //Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
+    public void start(Stage surfStage) throws Exception{
         // surf view
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("surf.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 700, 700));
-        primaryStage.show();
+        surfStage.setTitle("Surf View");
+        Pane surfPane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource("/surf.fxml"));
+        Scene scene = new Scene(surfPane);
 
+        surfStage.setScene(scene);
+        surfStage.show();
 
     }
-
 
     public static void main(String[] args) {
         launch(args);
     }
+
 }

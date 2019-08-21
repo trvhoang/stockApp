@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SController">
    <children>
@@ -14,32 +15,83 @@
             <TextField editable="false" layoutX="29.0" layoutY="14.0" prefHeight="25.0" prefWidth="157.0" text="&lt;15 | 16-50 | 50-80 | &gt;80" />
             <TextField fx:id="txtType" layoutX="33.0" layoutY="63.0" onAction="#AddSurf" promptText="Type" />
             <TextField fx:id="txtReferPrice" layoutX="33.0" layoutY="100.0" onAction="#AddSurf" promptText="Refer Price" />
+            <TextField fx:id="txtUpcutPrice" layoutX="590.0" layoutY="105.0" onAction="#AddSurf" promptText="Up cut Price" />
+            <Button id="btnRemove" layoutX="936.0" layoutY="149.0" mnemonicParsing="false" text="Remove" />
          </children>
       </Pane>
       <TableView fx:id="tblSurfList" layoutX="25.0" layoutY="188.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="1018.0">
           <columns>
-          <TableColumn fx:id="TypeCol" prefWidth="83.00001525878906" text="Type" />
-          <TableColumn fx:id="CodeCol" prefWidth="87.0" text="Code" />
-            <TableColumn fx:id="TrendSignalCol" prefWidth="156.0" text="Trend signal" />
-            <TableColumn fx:id="ReferPriceCol" prefWidth="82.0" text="Refer price" />
-            <TableColumn fx:id="BoughtPriceCol" prefWidth="91.0" text="Bought price" />
-            <TableColumn fx:id="RateCol" prefWidth="89.0" text="Expected rate" />
-            <TableColumn fx:id="UpcutPriceCol" prefWidth="85.0" text="Up cut price" />
-            <TableColumn fx:id="DowncutPriceCol" prefWidth="100.0" text="Down cut price" />
-            <TableColumn fx:id="StyleCol" prefWidth="114.0" text="Style" />
-            <TableColumn fx:id="RemarkCol" prefWidth="128.0" text="Remark" />
+              <TableColumn fx:id="TypeCol" prefWidth="83.00001525878906" text="Type" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="Type" />
+                  </cellValueFactory>
+              </TableColumn>
+
+              <TableColumn fx:id="CodeCol" prefWidth="87.0" text="Code" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="Code" />
+                  </cellValueFactory>
+              </TableColumn>
+
+              <TableColumn fx:id="TrendSignalCol" prefWidth="156.0" text="Trend signal" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="TrendSignal" />
+                  </cellValueFactory>
+              </TableColumn>
+
+              <TableColumn fx:id="ReferPriceCol" prefWidth="82.0" text="Refer price" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="ReferPrice" />
+                  </cellValueFactory>
+              </TableColumn>
+
+              <TableColumn fx:id="BoughtPriceCol" prefWidth="91.0" text="Bought price" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="BoughtPrice" />
+                  </cellValueFactory>
+              </TableColumn>
+
+              <TableColumn fx:id="RateCol" prefWidth="89.0" text="Expected rate" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="Rate" />
+                  </cellValueFactory>
+              </TableColumn>
+
+              <TableColumn fx:id="UpcutPriceCol" prefWidth="85.0" text="Up cut price" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="UpcutPrice" />
+                  </cellValueFactory>
+              </TableColumn>
+
+              <TableColumn fx:id="DowncutPriceCol" prefWidth="100.0" text="Down cut price" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="DowncutPrice" />
+                  </cellValueFactory>
+              </TableColumn>
+
+              <TableColumn fx:id="StyleCol" prefWidth="114.0" text="Style" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="Style" />
+                  </cellValueFactory>
+              </TableColumn>
+
+              <TableColumn fx:id="RemarkCol" prefWidth="128.0" text="Remark" >
+                  <cellValueFactory>
+                      <PropertyValueFactory property="Remark" />
+                  </cellValueFactory>
+              </TableColumn>
         </columns>
+
       </TableView>
-      <Button id="btnAdd" layoutX="938.0" layoutY="69.0" mnemonicParsing="false" onAction="#AddSurf" prefHeight="25.0" prefWidth="59.0" text="Add" />
-      <Button id="btnRemove" layoutX="984.0" layoutY="151.0" mnemonicParsing="false" text="Remove" />
-      <TextField fx:id="txtCode" layoutX="234.0" layoutY="65.0" onAction="#AddSurf" promptText="Code" />
-      <TextField fx:id="txtBoughtPrice" layoutX="234.0" layoutY="102.0" onAction="#AddSurf" promptText="Bought Price" />
-      <TextField fx:id="txtTrendSignal" layoutX="417.0" layoutY="69.0" onAction="#AddSurf" promptText="Trend Signal" />
-      <TextField fx:id="txtRate" layoutX="417.0" layoutY="106.0" onAction="#AddSurf" promptText="Expected Rate" />
-      <TextField fx:id="txtStyle" layoutX="590.0" layoutY="71.0" onAction="#AddSurf" promptText="Style" />
-      <TextField fx:id="txtUpcutPrice" layoutX="590.0" layoutY="108.0" onAction="#AddSurf" promptText="Up cut Price" />
-      <TextField fx:id="txtRemark" layoutX="759.0" layoutY="71.0" onAction="#AddSurf" promptText="Remark" />
-      <TextField fx:id="txtDowncutPrice" layoutX="759.0" layoutY="108.0" onAction="#AddSurf" promptText="Down cut Price" />
-      <Button id="btnRemove" layoutX="938.0" layoutY="108.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Clear" />
+      <Button id="btnAdd" fx:id="btnAdd" layoutX="938.0" layoutY="69.0" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" prefWidth="59.0" text="Add" />
+      <TextField fx:id="txtCode" layoutX="234.0" layoutY="65.0" promptText="Code" />
+      <TextField fx:id="txtBoughtPrice" layoutX="234.0" layoutY="102.0" promptText="Bought Price" />
+      <TextField fx:id="txtTrendSignal" layoutX="417.0" layoutY="69.0" promptText="Trend Signal" />
+      <TextField fx:id="txtRate" layoutX="417.0" layoutY="106.0" promptText="Expected Rate" />
+      <TextField fx:id="txtStyle" layoutX="590.0" layoutY="71.0" promptText="Style" />
+      <TextField fx:id="txtRemark" layoutX="759.0" layoutY="71.0" promptText="Remark" />
+      <TextField fx:id="txtDowncutPrice" layoutX="759.0" layoutY="108.0" promptText="Down cut Price" />
+
+      <Button id="btnRemove" layoutX="938.0" layoutY="108.0" mnemonicParsing="false" onAction="" prefHeight="25.0" prefWidth="59.0" text="Clear" />
    </children>
 </AnchorPane>
