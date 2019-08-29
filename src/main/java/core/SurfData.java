@@ -4,17 +4,22 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import java.sql.Ref;
 
 public class SurfData {
     @FXML
+    private TableView tblSurfList;
+    @FXML
     private TextField txtType;
     @FXML
     private TextField txtCode;
     @FXML
     private TextField txtTrendSignal;
+    @FXML
+    private TextField txtRate;
     @FXML
     private TextField txtReferPrice;
     @FXML
@@ -27,6 +32,7 @@ public class SurfData {
     private TextField txtStyle;
     @FXML
     private TextField txtRemark;
+
     public SimpleStringProperty  Type = new SimpleStringProperty();
     public SimpleStringProperty  Code = new SimpleStringProperty();
     public SimpleStringProperty  TrendSignal = new SimpleStringProperty();
@@ -38,7 +44,9 @@ public class SurfData {
     public SimpleStringProperty  Style = new SimpleStringProperty();
     public SimpleStringProperty  Remark = new SimpleStringProperty();
 
-    public SurfData(String Type, String Code, String TrendSignal, String ReferPrice, String BoughtPrice, String Rate, String UpcutPrice, String DowncutPrice, String Style, String Remark) {
+
+    public SurfData(String Type, String Code, String TrendSignal, String ReferPrice, String BoughtPrice, String Rate, String UpcutPrice,
+                    String DowncutPrice, String Style, String Remark) {
             setType(Type);
             setCode(Code);
             setTrendSignal(TrendSignal);
@@ -49,18 +57,14 @@ public class SurfData {
             setDowncutPrice(DowncutPrice);
             setStyle(Style);
             setRemark(Remark);
+
     }
-
-
 
     public  SurfData(){
         this("","","","","","","","","","");
     }
 
-    public String getType() {
-        return Type.get();
-    }
-
+    public String getType() {return Type.get(); }
 
     public void setType(String type) {
         Type.set(type);
@@ -137,4 +141,6 @@ public class SurfData {
     public void setRemark(String remark) {
         Remark.set(remark);
     }
+
+
 }

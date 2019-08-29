@@ -22,5 +22,6 @@
         <module name="untitled69" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>
