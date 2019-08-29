@@ -10,12 +10,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1057.0" prefWidth="1076.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SController">
    <children>
-      <Pane layoutX="33.0" layoutY="14.0" prefHeight="263.0" prefWidth="1011.0">
+      <Pane layoutX="28.0" layoutY="14.0" prefHeight="263.0" prefWidth="1020.0">
          <children>
             <TextField fx:id="legendColor" editable="false" layoutX="815.0" layoutY="14.0" prefHeight="25.0" prefWidth="157.0" text="&lt;15 | 16-50 | 50-80 | &gt;80" />
-            <Button id="btnAdd" fx:id="btnAdd" layoutX="428.0" layoutY="144.0" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" prefWidth="59.0" text="Add" />
+            <Button id="btnAdd" fx:id="btnAdd" layoutX="29.0" layoutY="215.0" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" prefWidth="59.0" text="Add" />
       
-            <Button fx:id="btnClear" layoutX="428.0" layoutY="181.0" mnemonicParsing="false" onAction="#clearItem" prefHeight="25.0" prefWidth="59.0" text="Clear" />
+            <Button fx:id="btnClear" layoutX="119.0" layoutY="215.0" mnemonicParsing="false" onAction="#clearItem" prefHeight="25.0" prefWidth="59.0" text="Clear" />
             <TextField fx:id="txtCode" layoutX="29.0" layoutY="56.0" promptText="Code" />
             <TextField fx:id="txtBoughtPrice" layoutX="29.0" layoutY="181.0" promptText="Bought Price" />
             <TextField fx:id="txtTrendSignal" layoutX="29.0" layoutY="101.0" promptText="Trend Signal" />
@@ -26,8 +26,8 @@
             <TextField fx:id="txtType" layoutX="29.0" layoutY="14.0" promptText="Type" />
             <TextField fx:id="txtReferPrice" layoutX="29.0" layoutY="144.0" promptText="Refer Price" />
             <TextField fx:id="txtUpcutPrice" layoutX="233.0" layoutY="56.0" promptText="Up cut Price" />
-            <Button id="btnRemove" layoutX="928.0" layoutY="227.0" mnemonicParsing="false" onAction="#removeItem" text="Remove" />
-            <Button id="btnHistory" fx:id="btnHistory" layoutX="854.0" layoutY="227.0" mnemonicParsing="false" onAction="#viewHistory" prefHeight="25.0" prefWidth="59.0" text="History" />
+            <Button id="btnRemove" layoutX="323.0" layoutY="215.0" mnemonicParsing="false" onAction="#removeItem" text="Remove" />
+            <Button id="btnHistory" fx:id="btnHistory" layoutX="481.0" layoutY="215.0" mnemonicParsing="false" onAction="#viewHistory" prefHeight="25.0" prefWidth="59.0" text="History" />
 
             <TableView fx:id="tblCodeHistory" editable="true" layoutX="554.0" layoutY="15.0" prefHeight="233.0" prefWidth="224.0" tableMenuButtonVisible="true">
               <columns>
@@ -45,7 +45,7 @@
               </columns>
             </TableView>
 
-            <Button id="btnRemove" fx:id="btnUpdate" layoutX="786.0" layoutY="227.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="25.0" prefWidth="59.0" text="Update" />
+            <Button id="btnRemove" fx:id="btnUpdate" layoutX="233.0" layoutY="215.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="25.0" prefWidth="59.0" text="Update" />
          </children>
       </Pane>
 
