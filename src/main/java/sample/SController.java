@@ -1,11 +1,13 @@
 package sample;
 import core.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import org.jsoup.Connection;
@@ -24,6 +26,10 @@ public class SController {
     private TableView<SurfData> tblSurfList;
     @FXML
     private TableView<CodeHistory> tblCodeHistory;
+    @FXML
+    private TableColumn DateCol;
+    @FXML
+    private TableColumn PriceCol;
     @FXML
     private TextField txtType;
     @FXML
@@ -108,16 +114,19 @@ public class SController {
             String date = currentRow.selectFirst("> td.Item_DateItem").text().trim();
             String price = currentRow.selectFirst("> td:nth-child(3)").text().trim();
 
-//            ObservableList<CodeHistory> historyItem = tblCodeHistory.getItems();
+            ObservableList<CodeHistory> historyItem = tblCodeHistory.getItems();
 //            System.out.println("history item: "+ historyItem);
 
-            tblCodeHistory.getItems().add(new CodeHistory(date, price));
+            historyItem.addAll(new CodeHistory(date, price));
+            tblCodeHistory.refresh();
+//            DateCol.setCellValueFactory(new PropertyValueFactory<CodeHistory, String>(date));
+//            PriceCol.setCellValueFactory(new PropertyValueFactory<CodeHistory, String>(price));
             System.out.println(date + "  " + price);
 
-            System.out.println("history item: "+ tblCodeHistory.getItems().toString());
             System.out.println("Add data successful: " + date + " - " + price);
             currentRow = tempt;
-            tempt = nextRow.nextElementSibling();
+            nextRow = currentRow.nextElementSibling();
+            tempt = nextRow;
         }
 
     }

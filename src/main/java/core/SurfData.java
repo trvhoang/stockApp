@@ -10,29 +10,7 @@ import javafx.scene.control.TextField;
 import java.sql.Ref;
 
 public class SurfData {
-    @FXML
-    private TableView tblSurfList;
-    @FXML
-    private TextField txtType;
-    @FXML
-    private TextField txtCode;
-    @FXML
-    private TextField txtTrendSignal;
-    @FXML
-    private TextField txtRate;
-    @FXML
-    private TextField txtReferPrice;
-    @FXML
-    private TextField txtBoughtPrice;
-    @FXML
-    private TextField txtUpcutPrice;
-    @FXML
-    private TextField txtDowncutPrice;
-    @FXML
-    private TextField txtStyle;
-    @FXML
-    private TextField txtRemark;
-
+    
     public SimpleStringProperty  Type = new SimpleStringProperty();
     public SimpleStringProperty  Code = new SimpleStringProperty();
     public SimpleStringProperty  TrendSignal = new SimpleStringProperty();

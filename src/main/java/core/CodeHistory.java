@@ -4,24 +4,37 @@ import javafx.beans.property.SimpleStringProperty;
 
 
 public class CodeHistory {
+
     public SimpleStringProperty Date = new SimpleStringProperty();
     public SimpleStringProperty Price = new SimpleStringProperty();
 
-    public CodeHistory(String date, String price){
-        setDate(date);
-        setPrice(price);
+    public String getDate() {
+        return Date.get();
     }
 
-    private CodeHistory(){ this("","");}
+    public SimpleStringProperty dateProperty() {
+        return Date;
+    }
 
-    private String getDate(){return Date.get();}
+    public void setDate(String date) {
+        this.Date.set(date);
+    }
 
-    private void setDate(String date){Date.set(date);}
+    public String getPrice() {
+        return Price.get();
+    }
 
-    private String getPrice(){return Price.get();}
+    public SimpleStringProperty priceProperty() {
+        return Price;
+    }
 
-    private void setPrice(String price) {Price.set(price);}
+    public void setPrice(String price) {
+        this.Price.set(price);
+    }
 
-
+    public CodeHistory(String Date, String Price){
+        setDate(Date);
+        setPrice(Price);
+    }
 
 }
