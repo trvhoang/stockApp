@@ -111,7 +111,7 @@ public class SController {
 
         System.out.println("Get history successful ");
         tblCodeHistory.refresh();
-        for(int i = 0; i <7; i++){
+        for(int i = 0; i <8; i++){
             String date = currentRow.selectFirst("> td.Item_DateItem").text().trim();
             String price = currentRow.selectFirst("> td:nth-child(3)").text().trim();
 
