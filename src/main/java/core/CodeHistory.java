@@ -1,12 +1,20 @@
 package core;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.text.Text;
 
 
 public class CodeHistory {
 
     public SimpleStringProperty Date = new SimpleStringProperty();
     public SimpleStringProperty Price = new SimpleStringProperty();
+    public Text Change = new Text();
+
+    public CodeHistory(String date, String price, Text change) {
+        setDate(date);
+        setPrice(price);
+        setChange(change);
+    }
 
     public String getDate() {
         return Date.get();
@@ -32,9 +40,11 @@ public class CodeHistory {
         this.Price.set(price);
     }
 
-    public CodeHistory(String Date, String Price){
-        setDate(Date);
-        setPrice(Price);
+    public Text getChange() {
+        return Change;
     }
 
+    public void setChange(Text change) {
+        Change = change;
+    }
 }

@@ -1,36 +1,30 @@
 package sample;
 import core.*;
-import javafx.collections.FXCollections;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
-import org.jsoup.Connection;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.util.Callback;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import java.io.IOException;
-import java.util.List;
-import java.util.Observable;
 
 
-public class SController {
 
+public class MenuController {
     @FXML
     private TableView<SurfData> tblSurfList;
     @FXML
     private TableView<CodeHistory> tblCodeHistory;
-    @FXML
-    private TableColumn DateCol;
-    @FXML
-    private TableColumn PriceCol;
     @FXML
     private TextField txtType;
     @FXML
@@ -51,12 +45,23 @@ public class SController {
     private TextField txtStyle;
     @FXML
     private TextField txtRemark;
+    @FXML
+    private TableColumn<CodeHistory, String> ChangeCol;
 
     @FXML
     protected void addItem(ActionEvent event){
         ObservableList<SurfData> data = tblSurfList.getItems();
-        data.add(new SurfData(txtType.getText().trim(), txtCode.getText().trim(), txtTrendSignal.getText().trim(), txtReferPrice.getText().trim(),
-                                txtRate.getText().trim(), txtBoughtPrice.getText().trim(), txtUpcutPrice.getText().trim(), txtDowncutPrice.getText().trim(),
+        float boughtPrice,rate, upCutPrice = 0, downCutPrice = 0;
+        rate = Float.parseFloat(txtRate.getText());
+        boughtPrice = Float.parseFloat(txtBoughtPrice.getText());
+
+        if (boughtPrice > 0){
+            upCutPrice = Math.round(boughtPrice * rate);
+            downCutPrice = Math.round(boughtPrice * 0.93);
+        }
+
+        data.add(new SurfData(txtType.getText().trim(), txtCode.getText().trim().toUpperCase(), txtTrendSignal.getText().trim(), txtReferPrice.getText().trim(),
+                                txtRate.getText().trim(), txtBoughtPrice.getText().trim(), String.valueOf(upCutPrice), String.valueOf(downCutPrice),
                                 txtStyle.getText().trim(), txtRemark.getText().trim()));
 
         txtType.setText("");
@@ -94,7 +99,7 @@ public class SController {
     @FXML
     protected void viewHistory(ActionEvent event) throws IOException {
         System.out.println("Click btn");
-        SurfData clickedItem = (SurfData) tblSurfList.getSelectionModel().getSelectedItem();
+        SurfData clickedItem = tblSurfList.getSelectionModel().getSelectedItem();
         String url = "http://s.cafef.vn/Lich-su-giao-dich-"+clickedItem.getCode()+"-1.chn";
 
         Element currentRow = Jsoup.connect(url)
@@ -103,28 +108,33 @@ public class SController {
                                             .getElementById("ctl00_ContentPlaceHolder1_ctl03_rptData2_ctl01_itemTR");
 
         Element nextRow = currentRow.nextElementSibling();
-
         Element tempt = nextRow;
 
-//        ObservableList<CodeHistory> historyItem = tblCodeHistory.getItems();
-//        System.out.println("history item: "+ historyItem);
-
-        System.out.println("Get history successful ");
-        tblCodeHistory.refresh();
         for(int i = 0; i <8; i++){
             String date = currentRow.selectFirst("> td.Item_DateItem").text().trim();
             String price = currentRow.selectFirst("> td:nth-child(3)").text().trim();
+            String change = currentRow.selectFirst("> td.Item_ChangePrice").text().trim();
 
             ObservableList<CodeHistory> historyItem = tblCodeHistory.getItems();
-//            System.out.println("history item: "+ historyItem);
 
-            historyItem.addAll(new CodeHistory(date, price));
+//            historyItem.addAll(new CodeHistory(date, price, change));
+
+            Float check = Float.parseFloat(change.substring(0,5));
+
+            if(check >= 0){
+                Text changeText = new Text();
+                changeText.setText(change);
+                changeText.setFill(Color.GREEN);
+                historyItem.addAll(new CodeHistory(date, price, changeText));
+            }else{
+                Text changeText = new Text();
+                changeText.setText(change);
+                changeText.setFill(Color.RED);
+                historyItem.addAll(new CodeHistory(date, price, changeText));
+            }
+
             tblCodeHistory.refresh();
-//            DateCol.setCellValueFactory(new PropertyValueFactory<CodeHistory, String>(date));
-//            PriceCol.setCellValueFactory(new PropertyValueFactory<CodeHistory, String>(price));
-            System.out.println(date + "  " + price);
 
-            System.out.println("Add data successful: " + date + " - " + price);
             currentRow = tempt;
             nextRow = currentRow.nextElementSibling();
             tempt = nextRow;
@@ -176,5 +186,6 @@ public class SController {
             txtRemark.setText(clickedItem.getRemark());
         }
     }
+
 
 }

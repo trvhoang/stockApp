@@ -40,8 +40,8 @@ public class Main extends Application {
     public void start(Stage surfStage) throws Exception{
         // surf view
 
-        surfStage.setTitle("Surf View");
-        Pane surfPane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource("surf.fxml"));
+        surfStage.setTitle("Main Menu");
+        Pane surfPane = (Pane) FXMLLoader.load(getClass().getClassLoader().getResource("main-menu.fxml"));
         Scene scene = new Scene(surfPane);
 
         surfStage.setScene(scene);
