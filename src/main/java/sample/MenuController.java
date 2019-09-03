@@ -17,7 +17,7 @@ import javafx.util.Callback;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import java.io.IOException;
-
+import java.text.DecimalFormat;
 
 
 public class MenuController {
@@ -32,15 +32,13 @@ public class MenuController {
     @FXML
     private TextField txtTrendSignal;
     @FXML
-    private TextField txtRate;
-    @FXML
     private TextField txtReferPrice;
     @FXML
     private TextField txtBoughtPrice;
     @FXML
-    private TextField txtUpcutPrice;
+    private TextField txtUpcutRate;
     @FXML
-    private TextField txtDowncutPrice;
+    private TextField txtDowncutRate;
     @FXML
     private TextField txtStyle;
     @FXML
@@ -50,28 +48,32 @@ public class MenuController {
 
     @FXML
     protected void addItem(ActionEvent event){
+        //Calculate Up cut price and Down cut Price
         ObservableList<SurfData> data = tblSurfList.getItems();
-        float boughtPrice,rate, upCutPrice = 0, downCutPrice = 0;
-        rate = Float.parseFloat(txtRate.getText());
-        boughtPrice = Float.parseFloat(txtBoughtPrice.getText());
+        double boughtPrice,upRate, downRate, upCutPrice = 0, downCutPrice = 0;
+        upRate = Double.parseDouble(txtUpcutRate.getText());
+        downRate = Double.parseDouble(txtDowncutRate.getText());
+        boughtPrice = Double.parseDouble(txtBoughtPrice.getText());
 
         if (boughtPrice > 0){
-            upCutPrice = Math.round(boughtPrice * rate);
-            downCutPrice = Math.round(boughtPrice * 0.93);
+            upCutPrice = Math.round(boughtPrice * (1 + upRate)*100);
+            downCutPrice = Math.round(boughtPrice * (1 - downRate)*100);
         }
 
-        data.add(new SurfData(txtType.getText().trim(), txtCode.getText().trim().toUpperCase(), txtTrendSignal.getText().trim(), txtReferPrice.getText().trim(),
-                                txtRate.getText().trim(), txtBoughtPrice.getText().trim(), String.valueOf(upCutPrice), String.valueOf(downCutPrice),
+        //Add data to table view
+        data.add(new SurfData(txtType.getText().trim(), txtCode.getText().trim().toUpperCase(), txtTrendSignal.getText().trim(), txtReferPrice.getText().trim(), txtBoughtPrice.getText().trim(),
+                                txtUpcutRate.getText().trim(), String.valueOf(upCutPrice/100), txtDowncutRate.getText().trim(),String.valueOf(downCutPrice/100),
                                 txtStyle.getText().trim(), txtRemark.getText().trim()));
 
+        //Clear text fields
         txtType.setText("");
         txtCode.setText("");
         txtTrendSignal.setText("");
-        txtRate.setText("");
+        txtUpcutRate.setText("");
         txtReferPrice.setText("");
         txtBoughtPrice.setText("");
-        txtUpcutPrice.setText("");
-        txtDowncutPrice.setText("");
+        txtUpcutRate.setText("");
+        txtDowncutRate.setText("");
         txtStyle.setText("");
         txtRemark.setText("");
     }
@@ -87,18 +89,18 @@ public class MenuController {
         txtType.setText("");
         txtCode.setText("");
         txtTrendSignal.setText("");
-        txtRate.setText("");
+        txtUpcutRate.setText("");
         txtReferPrice.setText("");
         txtBoughtPrice.setText("");
-        txtUpcutPrice.setText("");
-        txtDowncutPrice.setText("");
+        txtUpcutRate.setText("");
+        txtDowncutRate.setText("");
         txtStyle.setText("");
         txtRemark.setText("");
     }
 
     @FXML
     protected void viewHistory(ActionEvent event) throws IOException {
-        System.out.println("Click btn");
+        //Get HTML element
         SurfData clickedItem = tblSurfList.getSelectionModel().getSelectedItem();
         String url = "http://s.cafef.vn/Lich-su-giao-dich-"+clickedItem.getCode()+"-1.chn";
 
@@ -110,6 +112,7 @@ public class MenuController {
         Element nextRow = currentRow.nextElementSibling();
         Element tempt = nextRow;
 
+        //Get data of 8 days and add to table view
         for(int i = 0; i <8; i++){
             String date = currentRow.selectFirst("> td.Item_DateItem").text().trim();
             String price = currentRow.selectFirst("> td:nth-child(3)").text().trim();
@@ -121,6 +124,7 @@ public class MenuController {
 
             Float check = Float.parseFloat(change.substring(0,5));
 
+            //Color the price whether it went up or down
             if(check >= 0){
                 Text changeText = new Text();
                 changeText.setText(change);
@@ -144,26 +148,40 @@ public class MenuController {
 
     @FXML
     public void updateItem(ActionEvent actionEvent) {
+        //Calculate new Up cut Price and Down cut Price
+        double boughtPrice,upRate, downRate, upCutPrice = 0, downCutPrice = 0;
+        upRate = Double.parseDouble(txtUpcutRate.getText());
+        downRate = Double.parseDouble(txtDowncutRate.getText());
+        boughtPrice = Double.parseDouble(txtBoughtPrice.getText());
+
+        if (boughtPrice > 0){
+            upCutPrice = Math.round(boughtPrice * (1 + upRate)*100);
+            downCutPrice = Math.round(boughtPrice * (1 - downRate)*100);
+        }
+
+        //Add new data to table view
         SurfData clickedItem = (SurfData) tblSurfList.getSelectionModel().getSelectedItem();
         clickedItem.setType(txtType.getText());
         clickedItem.setCode(txtCode.getText());
         clickedItem.setTrendSignal(txtTrendSignal.getText());
         clickedItem.setReferPrice(txtReferPrice.getText());
         clickedItem.setBoughtPrice(txtBoughtPrice.getText());
-        clickedItem.setRate(txtRate.getText());
-        clickedItem.setUpcutPrice(txtUpcutPrice.getText());
-        clickedItem.setDowncutPrice(txtDowncutPrice.getText());
+        clickedItem.setRate(txtUpcutRate.getText());
+        clickedItem.setUpcutPrice(String.valueOf((upCutPrice/100)));
+        clickedItem.setDRate(txtDowncutRate.getText());
+        clickedItem.setDowncutPrice(String.valueOf(downCutPrice/100));
         clickedItem.setStyle(txtStyle.getText());
         clickedItem.setRemark(txtRemark.getText());
 
+        //Clear text fields
         txtType.setText("");
         txtCode.setText("");
         txtTrendSignal.setText("");
-        txtRate.setText("");
+        txtUpcutRate.setText("");
         txtReferPrice.setText("");
         txtBoughtPrice.setText("");
-        txtUpcutPrice.setText("");
-        txtDowncutPrice.setText("");
+        txtUpcutRate.setText("");
+        txtDowncutRate.setText("");
         txtStyle.setText("");
         txtRemark.setText("");
 
@@ -172,6 +190,7 @@ public class MenuController {
     }
 
     public void clickItem(MouseEvent mouseEvent) {
+        //When click 1 row, auto show its data to text fields
         SurfData clickedItem = (SurfData) tblSurfList.getSelectionModel().getSelectedItem();
         if (clickedItem != null) {
             txtCode.setText(clickedItem.getCode());
@@ -179,9 +198,8 @@ public class MenuController {
             txtTrendSignal.setText(clickedItem.getTrendSignal());
             txtReferPrice.setText(clickedItem.getReferPrice());
             txtBoughtPrice.setText(clickedItem.getBoughtPrice());
-            txtRate.setText(clickedItem.getRate());
-            txtUpcutPrice.setText(clickedItem.getUpcutPrice());
-            txtDowncutPrice.setText(clickedItem.getDowncutPrice());
+            txtUpcutRate.setText(clickedItem.getRate());
+            txtDowncutRate.setText(clickedItem.getDRate());
             txtStyle.setText(clickedItem.getStyle());
             txtRemark.setText(clickedItem.getRemark());
         }

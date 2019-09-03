@@ -18,13 +18,14 @@ public class SurfData {
     public SimpleStringProperty  BoughtPrice = new SimpleStringProperty();
     public SimpleStringProperty  Rate = new SimpleStringProperty();
     public SimpleStringProperty  UpcutPrice = new SimpleStringProperty();
+    public SimpleStringProperty  DRate = new SimpleStringProperty();
     public SimpleStringProperty  DowncutPrice = new SimpleStringProperty();
     public SimpleStringProperty  Style = new SimpleStringProperty();
     public SimpleStringProperty  Remark = new SimpleStringProperty();
 
 
     public SurfData(String Type, String Code, String TrendSignal, String ReferPrice, String BoughtPrice, String Rate, String UpcutPrice,
-                    String DowncutPrice, String Style, String Remark) {
+                    String DRate, String DowncutPrice, String Style, String Remark) {
             setType(Type);
             setCode(Code);
             setTrendSignal(TrendSignal);
@@ -32,6 +33,7 @@ public class SurfData {
             setBoughtPrice(BoughtPrice);
             setRate(Rate);
             setUpcutPrice(UpcutPrice);
+            setDRate(DRate);
             setDowncutPrice(DowncutPrice);
             setStyle(Style);
             setRemark(Remark);
@@ -39,86 +41,138 @@ public class SurfData {
     }
 
     public  SurfData(){
-        this("","","","","","","","","","");
+        this("","","","","","","","","","","");
     }
 
-    public String getType() {return Type.get(); }
+    public String getType() {
+        return Type.get();
+    }
+
+    public SimpleStringProperty typeProperty() {
+        return Type;
+    }
 
     public void setType(String type) {
-        Type.set(type);
+        this.Type.set(type);
     }
 
     public String getCode() {
         return Code.get();
     }
 
+    public SimpleStringProperty codeProperty() {
+        return Code;
+    }
+
     public void setCode(String code) {
-        Code.set(code);
+        this.Code.set(code);
     }
 
     public String getTrendSignal() {
         return TrendSignal.get();
     }
 
+    public SimpleStringProperty trendSignalProperty() {
+        return TrendSignal;
+    }
+
     public void setTrendSignal(String trendSignal) {
-        TrendSignal.set(trendSignal);
+        this.TrendSignal.set(trendSignal);
     }
 
     public String getReferPrice() {
         return ReferPrice.get();
     }
 
+    public SimpleStringProperty referPriceProperty() {
+        return ReferPrice;
+    }
+
     public void setReferPrice(String referPrice) {
-        ReferPrice.set(referPrice);
+        this.ReferPrice.set(referPrice);
     }
 
     public String getBoughtPrice() {
         return BoughtPrice.get();
     }
 
+    public SimpleStringProperty boughtPriceProperty() {
+        return BoughtPrice;
+    }
+
     public void setBoughtPrice(String boughtPrice) {
-        BoughtPrice.set(boughtPrice);
+        this.BoughtPrice.set(boughtPrice);
     }
 
     public String getRate() {
         return Rate.get();
     }
 
+    public SimpleStringProperty rateProperty() {
+        return Rate;
+    }
+
     public void setRate(String rate) {
-        Rate.set(rate);
+        this.Rate.set(rate);
     }
 
     public String getUpcutPrice() {
         return UpcutPrice.get();
     }
 
+    public SimpleStringProperty upcutPriceProperty() {
+        return UpcutPrice;
+    }
+
     public void setUpcutPrice(String upcutPrice) {
-        UpcutPrice.set(upcutPrice);
+        this.UpcutPrice.set(upcutPrice);
+    }
+
+    public String getDRate() {
+        return DRate.get();
+    }
+
+    public SimpleStringProperty DRateProperty() {
+        return DRate;
+    }
+
+    public void setDRate(String DRate) {
+        this.DRate.set(DRate);
     }
 
     public String getDowncutPrice() {
         return DowncutPrice.get();
     }
 
+    public SimpleStringProperty downcutPriceProperty() {
+        return DowncutPrice;
+    }
+
     public void setDowncutPrice(String downcutPrice) {
-        DowncutPrice.set(downcutPrice);
+        this.DowncutPrice.set(downcutPrice);
     }
 
     public String getStyle() {
         return Style.get();
     }
 
+    public SimpleStringProperty styleProperty() {
+        return Style;
+    }
+
     public void setStyle(String style) {
-        Style.set(style);
+        this.Style.set(style);
     }
 
     public String getRemark() {
         return Remark.get();
     }
 
-    public void setRemark(String remark) {
-        Remark.set(remark);
+    public SimpleStringProperty remarkProperty() {
+        return Remark;
     }
 
-
+    public void setRemark(String remark) {
+        this.Remark.set(remark);
+    }
 }
