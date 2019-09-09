@@ -12,31 +12,31 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="934.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
    <children>
-      <TabPane prefHeight="926.0" prefWidth="1112.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Value Investing">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
           <Tab text="Surf List">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="916.0" prefWidth="1112.0">
+                  <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                      <children>
-                        <Pane layoutX="14.0" prefHeight="255.0" prefWidth="1080.0">
+                        <Pane layoutX="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="255.0" prefWidth="1080.0">
                            <children>
                               <TextField fx:id="txtType" layoutX="29.0" layoutY="14.0" promptText="Type" />
                               <TextField fx:id="txtCode" layoutX="29.0" layoutY="56.0" promptText="Code" />
-                              <TextField fx:id="txtTrendSignal" layoutX="29.0" layoutY="101.0" promptText="Trend Signal" />
-                              <TextField fx:id="txtReferPrice" layoutX="29.0" layoutY="144.0" promptText="Refer Price" />
-                              <TextField fx:id="txtBoughtPrice" layoutX="29.0" layoutY="183.0" promptText="Bought Price" />
-                              <TextField fx:id="txtUpcutRate" layoutX="233.0" layoutY="56.0" promptText="Up-cut Rate" />
-                              <TextField fx:id="txtDowncutRate" layoutX="233.0" layoutY="101.0" promptText="Down-cut Rate" />
-                              <TextField fx:id="txtStyle" layoutX="233.0" layoutY="144.0" promptText="Style" />
-                              <TextField fx:id="txtRemark" layoutX="233.0" layoutY="183.0" promptText="Remark" />
+                              <TextField fx:id="txtReferPrice" layoutX="29.0" layoutY="98.0" promptText="Refer Price" />
+                              <TextField fx:id="txtBoughtPrice" layoutX="29.0" layoutY="141.0" promptText="Bought Price" />
+                              <TextField fx:id="txtUpcutRate" layoutX="233.0" layoutY="14.0" promptText="Up-cut Rate" />
+                              <TextField fx:id="txtDowncutRate" layoutX="233.0" layoutY="56.0" promptText="Down-cut Rate" />
+                              <TextField fx:id="txtStyle" layoutX="233.0" layoutY="98.0" promptText="Style" />
+                              <TextField fx:id="txtRemark" layoutX="233.0" layoutY="141.0" promptText="Remark" />
                               <Button id="btnAdd" fx:id="btnAdd" layoutX="29.0" layoutY="219.0" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" prefWidth="59.0" text="Add" />
                               <Button fx:id="btnClear" layoutX="119.0" layoutY="220.0" mnemonicParsing="false" onAction="#clearItem" prefHeight="25.0" prefWidth="59.0" text="Clear" />
                               <Button id="btnRemove" fx:id="btnUpdate" layoutX="233.0" layoutY="220.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="25.0" prefWidth="59.0" text="Update" />
@@ -64,7 +64,7 @@
                               <TextField fx:id="legendColor" editable="false" layoutX="922.0" layoutY="14.0" prefHeight="25.0" prefWidth="149.0" text="&lt;15 | 16-50 | 50-80 | &gt;80" />
                            </children>
                         </Pane>
-                        <TableView fx:id="tblSurfList" editable="true" layoutX="14.0" layoutY="276.0" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#clickItem" prefHeight="614.0" prefWidth="1082.0" tableMenuButtonVisible="true">
+                        <TableView fx:id="tblSurfList" editable="true" layoutX="14.0" layoutY="276.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickItem" prefHeight="614.0" prefWidth="1082.0" tableMenuButtonVisible="true">
                            <columns>
                               <TableColumn fx:id="TypeCol" prefWidth="83.00001525878906" text="Type">
                                  <cellValueFactory>
@@ -123,12 +123,13 @@
                               </TableColumn>
                            </columns>
                         </TableView>
-                     </children></AnchorPane>
+                     </children>
+                  </Pane>
             </content>
           </Tab>
            <Tab text="Reports">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <LineChart layoutX="29.0" layoutY="60.0" prefHeight="468.0" prefWidth="1008.0">
                           <xAxis>
@@ -138,23 +139,33 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </LineChart>
-                     </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
            <Tab text="Configurations">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="1033.0">
+                        <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="1033.0">
                            <children>
                               <TextField layoutX="26.0" layoutY="23.0" prefHeight="25.0" prefWidth="80.0" promptText="Lengend 1" />
                            </children>
                         </Pane>
-                     </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Stock Chart">
+               <content>
+                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <WebView fx:id="webView" layoutX="14.0" layoutY="14.0" prefHeight="868.0" prefWidth="1076.0" />
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
         </tabs>
       </TabPane>
    </children>
-
-</AnchorPane>
+</Pane>
