@@ -1,28 +1,29 @@
 package sample;
 import core.*;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.util.Callback;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
+
+import java.awt.*;
 import java.io.IOException;
-import java.text.DecimalFormat;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-
-public class MenuController {
+public class MenuController implements Initializable {
     @FXML
     private TableView<SurfData> tblSurfList;
     @FXML
@@ -47,6 +48,10 @@ public class MenuController {
     private TextField txtRemark;
     @FXML
     private WebView webView;
+    @FXML
+    private TabPane tabSChart;
+    @FXML
+    private TabPane tabPane;
 
     @FXML
     protected void addItem(ActionEvent event){
@@ -57,20 +62,19 @@ public class MenuController {
         downRate = Double.parseDouble(txtDowncutRate.getText())/100;
         boughtPrice = Double.parseDouble(txtBoughtPrice.getText());
 
-        if (boughtPrice > 0){
+        if (boughtPrice >= 0 & upRate >= 0 & downRate >= 0){
             upCutPrice = Math.round(boughtPrice * (1 + upRate)*100);
             downCutPrice = Math.round(boughtPrice * (1 - downRate)*100);
         }
 
         //Add data to table view
-        data.add(new SurfData(txtType.getText().trim(), txtCode.getText().trim().toUpperCase(), txtTrendSignal.getText().trim(), txtReferPrice.getText().trim(), txtBoughtPrice.getText().trim(),
+        data.add(new SurfData(txtType.getText().trim(), txtCode.getText().trim().toUpperCase(), "", txtReferPrice.getText().trim(), txtBoughtPrice.getText().trim(),
                                 txtUpcutRate.getText().trim()+ " %", String.valueOf(upCutPrice/100), txtDowncutRate.getText().trim()+ " %",String.valueOf(downCutPrice/100),
                                 txtStyle.getText().trim(), txtRemark.getText().trim()));
 
         //Clear text fields
         txtType.setText("");
         txtCode.setText("");
-        txtTrendSignal.setText("");
         txtUpcutRate.setText("");
         txtReferPrice.setText("");
         txtBoughtPrice.setText("");
@@ -172,37 +176,44 @@ public class MenuController {
         double boughtPrice,upRate, downRate, upCutPrice = 0, downCutPrice = 0;
 
         String upRateString = txtUpcutRate.getText().trim();
-        upRateString = upRateString.substring(0, upRateString.length() - 2);
-        upRate = Double.parseDouble(upRateString);
+        if (upRateString.contains(" %")){
+            upRateString = upRateString.substring(0, upRateString.length() - 2);
+        }
+        if(Double.valueOf(upRateString) < 1){
+            upRate = Double.parseDouble(upRateString);
+        }else upRate = Double.parseDouble(upRateString)/100;
 
         String dRateString = txtDowncutRate.getText().trim();
-        dRateString = dRateString.substring(0, dRateString.length() - 2);
-        downRate = Double.parseDouble(dRateString);
+        if(dRateString.contains(" %")){
+            dRateString = dRateString.substring(0, dRateString.length() - 2);
+        }
+        if(Double.valueOf(dRateString) < 1){
+            downRate = Double.parseDouble(dRateString);
+        }else downRate = Double.parseDouble(dRateString)/100;
+
         boughtPrice = Double.parseDouble(txtBoughtPrice.getText());
 
         if (boughtPrice > 0){
-            upCutPrice = Math.round(boughtPrice * (1 + upRate)*100);
-            downCutPrice = Math.round(boughtPrice * (1 - downRate)*100);
+            upCutPrice = Math.round(boughtPrice * (1 + upRate)*100)/100;
+            downCutPrice = Math.round(boughtPrice * (1 - downRate)*100)/100;
         }
 
         //Add new data to table view
         SurfData clickedItem = (SurfData) tblSurfList.getSelectionModel().getSelectedItem();
         clickedItem.setType(txtType.getText());
         clickedItem.setCode(txtCode.getText().toUpperCase());
-        clickedItem.setTrendSignal(txtTrendSignal.getText());
         clickedItem.setReferPrice(txtReferPrice.getText());
         clickedItem.setBoughtPrice(txtBoughtPrice.getText());
-        clickedItem.setRate(txtUpcutRate.getText());
-        clickedItem.setUpcutPrice(String.valueOf((upCutPrice/100)));
-        clickedItem.setDRate(txtDowncutRate.getText());
-        clickedItem.setDowncutPrice(String.valueOf(downCutPrice/100));
+        clickedItem.setRate(upRateString + " %");
+        clickedItem.setDRate(dRateString + " %");
         clickedItem.setStyle(txtStyle.getText());
         clickedItem.setRemark(txtRemark.getText());
+        clickedItem.setUpcutPrice(String.valueOf(upCutPrice));
+        clickedItem.setDowncutPrice(String.valueOf(downCutPrice));
 
         //Clear text fields
         txtType.setText("");
         txtCode.setText("");
-        txtTrendSignal.setText("");
         txtUpcutRate.setText("");
         txtReferPrice.setText("");
         txtBoughtPrice.setText("");
@@ -221,7 +232,6 @@ public class MenuController {
         if (clickedItem != null) {
             txtCode.setText(clickedItem.getCode());
             txtType.setText(clickedItem.getType());
-            txtTrendSignal.setText(clickedItem.getTrendSignal());
             txtReferPrice.setText(clickedItem.getReferPrice());
             txtBoughtPrice.setText(clickedItem.getBoughtPrice());
             txtUpcutRate.setText(clickedItem.getRate());
@@ -231,8 +241,13 @@ public class MenuController {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb){
+        WebEngine engine = webView.getEngine();
+        engine.setJavaScriptEnabled(true);
 
-    public void setWebView(){
+        engine.load("https://trade-hn.vndirect.com.vn/bieu-do-ky-thuat");
 
     }
+
 }
